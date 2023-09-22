@@ -1,0 +1,40 @@
+@use "../base/reset";
+@use "../abstracts/mixins" as mixin;
+@use "../abstracts/variables" as var;
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #fff;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 70%;
+  height: 100vh;
+
+  .text-input {
+    width: 100%;
+    height: 50%;
+    border-radius: 10px;
+    border: none;
+
+    padding:1rem 1rem;
+    font-size: 1.5rem;
+
+    resize: none;
+
+    box-shadow: inset 0px 0px 10px  rgba(0, 0, 0, 0.233);
+
+    font-family: "mona-sans";
+    //border: 1px solid #9e9e9e
+  }
+}

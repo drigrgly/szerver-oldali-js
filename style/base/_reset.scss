@@ -1,0 +1,55 @@
+*,
+*::before,
+*::after,
+*:hover
+{
+  box-sizing: border-box;
+}
+
+/* Removing default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+.site-container
+{
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  height: 100vh;
+}

@@ -1,0 +1,42 @@
+@use "./variables" as var;
+
+/* ============== */
+/* = MQ handler = */
+/* ============== */
+@mixin mqDown($breakpoint) {
+  $raw-query: map-get(var.$breakpointsDown, $breakpoint);
+
+  @if $raw-query {
+      $query: if(
+      type-of($raw-query) == 'string',
+      unquote($raw-query),
+      inspect($raw-query)
+      );
+
+      @media #{$query} {
+      @content;
+      }
+  } @else {
+      @error 'No value found for `#{$breakpoint}`. '
+          + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+@mixin mq($breakpoint) {
+  $raw-query: map-get(var.$breakpoints, $breakpoint);
+
+  @if $raw-query {
+      $query: if(
+      type-of($raw-query) == 'string',
+      unquote($raw-query),
+      inspect($raw-query)
+      );
+
+      @media #{$query} {
+      @content;
+      }
+  } @else {
+      @error 'No value found for `#{$breakpoint}`. '
+          + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}

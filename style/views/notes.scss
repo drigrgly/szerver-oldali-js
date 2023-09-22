@@ -1,0 +1,241 @@
+@use "../base/reset";
+@use "../abstracts/mixins" as mixin;
+@use "../abstracts/variables" as var;
+
+* {
+  font-family: "mona-sans", Helvetica, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+header {
+  background-color: #fff;
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+  }
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+  width: 100%;
+  min-height: 10vh;
+
+
+  padding: 0em 3em;
+  
+
+
+  text-align: center;
+
+  .title {
+    text-transform: uppercase;
+    margin-right: 1em;
+
+    @include mixin.mqDown("medium") {
+      margin-right: 0em;
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+
+    gap: 1em;
+    
+    &__button {
+      padding: 0.5em 1em;
+      position: relative;
+      background-color: #fff;
+      //border: 1px solid rgba(0, 0, 0, 0.575);
+
+      border-radius: 10px;
+      text-align: center;
+      text-transform: lowercase;
+
+      cursor: pointer;
+      user-select: none;
+
+      &:link, &:visited, &:hover {
+        text-decoration: none;
+        color:black;
+      }
+
+      &:hover {
+        background-color: #8f95b18c;
+      }
+    }
+
+    @include mixin.mqDown("medium") {
+      flex-direction: column;
+      &::after {
+        left: 25%;
+        right: 25%;
+      }
+    }
+  }
+  // /actions
+
+  @include mixin.mqDown("medium") {
+    flex-direction: column;
+    padding-bottom: 2em;
+    border: none;
+
+    &::before {
+      left: 25%;
+      right: 25%;
+    }
+  }
+}
+// /header
+
+main {
+  margin: 0em auto;
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  height: 100vh;
+
+  overflow: scroll;
+
+  .notes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    max-width: 80em;
+
+    padding: 2em 2em;
+
+    .note {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &:nth-child(2) {
+        .note-category {
+          color: #fff;
+          background-color: rgb(120, 65, 192);
+        }
+      }
+
+      &:nth-child(3n) {
+        .note-category {
+          color: #fff;
+          background-color: rgb(192, 65, 65);
+        }
+      }
+   
+
+
+
+      border:1px solid black;
+      border-bottom: none;
+
+      &:nth-child(1) {
+        border-radius: 10px 10px 0px 0px;
+      }
+
+      &:last-of-type {
+        border-radius: 0px 0px 10px 10px;
+        &::before {
+          background: none;
+        }
+
+        border:1px solid black;
+      }
+
+      &:only-child {
+        border-radius: 10px;
+        border:1px solid black;
+        
+        &::before {
+          background: none;
+        }
+      }
+
+      overflow: hidden;
+
+
+      &-body {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+  
+        padding: 1em 1em;
+  
+        width: 100%;
+        height: 100%;
+
+        background-color: #ffffff;
+  
+        &__actions {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          gap:1em;
+  
+          &__button { 
+            height: 2em;
+            width: 2em;
+  
+            border-radius: 10px;
+  
+            background-color: #8d6b6b;
+          }
+        }
+  
+        
+      }
+      // /note-body
+
+      &-category {
+        width: 10em;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        z-index: 1;
+
+        height: 100%;
+        background-color: rgb(226, 217, 94);
+
+        
+
+        box-shadow: -5px 0px 10px  rgba(0, 0, 0, 0.212);
+
+        &__text {
+          text-align: center;
+        }
+      }
+    }
+    //note
+  }
+
+}
