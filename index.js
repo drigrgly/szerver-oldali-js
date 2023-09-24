@@ -2,8 +2,8 @@ let express = require("express");
 let app = express();
 
 app.use(express.static(__dirname + '/public'));
-//routing
 
+//routing
 app.get("/", (req, res, next) => {
   res.redirect("/views/notes.html");
 });

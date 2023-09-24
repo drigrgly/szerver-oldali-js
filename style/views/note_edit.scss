@@ -1,7 +1,9 @@
 @use "../base/reset";
 @use "../abstracts/mixins" as mixin;
 @use "../abstracts/variables" as var;
-
+* {
+  font-family: "mona-sans", Helvetica, sans-serif;
+}
 
 body {
   display: flex;
@@ -20,6 +22,36 @@ main {
 
   width: 70%;
   height: 100vh;
+
+  header {
+    display: grid;
+    height: 4em;
+    grid-template-columns: 70% 15% 15%;
+    align-items: center;
+
+    width: 100%;
+
+    .title {
+      width: 95%;
+      font-size: 2.5rem;
+      font-weight: lighter;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .category-select {
+      text-align: center;
+      font-size: 1.3rem;
+      background-color: aquamarine;
+      border:none;
+      height: 100%;
+    }
+
+    .character-count {
+      text-align: right;
+    }
+
+  }
 
   .text-input {
     width: 100%;

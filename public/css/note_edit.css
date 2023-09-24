@@ -54,6 +54,10 @@ a:not([class]) {
 /* ============== */
 /* = MQ handler = */
 /* ============== */
+* {
+  font-family: "mona-sans", Helvetica, sans-serif;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -69,6 +73,30 @@ main {
   align-items: center;
   width: 70%;
   height: 100vh;
+}
+main header {
+  display: grid;
+  height: 4em;
+  grid-template-columns: 70% 15% 15%;
+  align-items: center;
+  width: 100%;
+}
+main header .title {
+  width: 95%;
+  font-size: 2.5rem;
+  font-weight: lighter;
+  white-space: nowrap;
+  overflow: hidden;
+}
+main header .category-select {
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: aquamarine;
+  border: none;
+  height: 100%;
+}
+main header .character-count {
+  text-align: right;
 }
 main .text-input {
   width: 100%;

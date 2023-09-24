@@ -120,6 +120,8 @@ main {
 
   overflow: scroll;
 
+
+
   .notes {
     display: flex;
     flex-direction: column;
@@ -129,10 +131,11 @@ main {
 
     padding: 2em 2em;
 
+    
+
     .note {
       position: relative;
       display: flex;
-      flex-direction: row;
       align-items: center;
 
       &:nth-child(2) {
@@ -149,9 +152,6 @@ main {
         }
       }
    
-
-
-
       border:1px solid black;
       border-bottom: none;
 
@@ -182,31 +182,71 @@ main {
 
       &-body {
         position: relative;
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
         align-items: center;
-        justify-content: space-between;
+        text-align: left;
   
-        padding: 1em 1em;
+        padding: 0.5em 1em;
   
         width: 100%;
         height: 100%;
 
         background-color: #ffffff;
   
+        &__title {
+          overflow: hidden;
+          width: 90%;
+          white-space: nowrap;
+        }
+
         &__actions {
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: left;
+          align-items: center;
           gap:1em;
   
           &__button { 
-            height: 2em;
-            width: 2em;
-  
+            position: relative;
+
+            height: 2.4em;
+            width: 2.4em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
             border-radius: 10px;
-  
-            background-color: #8d6b6b;
+          
+
+            &:hover {
+              cursor: pointer;
+              &::after {
+                content: "";
+                position: absolute;
+                top: -0.1em;
+                left: -0.1em;
+                right: -0.1em;
+                bottom: -0.1em;
+
+
+                border-radius: 10px;
+                border: 2px solid black;
+              }
+
+            }
+            &--delete {
+
+              fill: rgb(214, 27, 27);
+
+
+              &:hover {
+                &::after {
+                  border: 2px solid rgb(214, 27, 27);
+                }
+              }
+            }
+
           }
         }
   
@@ -233,6 +273,43 @@ main {
         &__text {
           text-align: center;
         }
+
+        &-filter {
+          width: 10em;
+          padding:1em 0em;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          position: relative;
+          //border: 1px solid rgba(0, 0, 0, 0.575);
+
+          text-align: center;
+          text-transform: lowercase;
+
+          user-select: none;
+
+
+          &__icon {
+            position: relative;
+            height: 100%;
+            height: 2.4em;
+
+            cursor: pointer;
+          }
+
+          // p {
+          //   border: 2px solid #1d1f17;
+          //   border-radius: 10px;
+          //   width: 80%;
+          //   &:hover {
+          //     background-color: #8f95b18c;
+          //   }
+          // }
+
+         
+        }
+        // /filter
       }
     }
     //note

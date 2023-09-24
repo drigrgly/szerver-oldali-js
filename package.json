@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "styles": "sass --watch style/views:public/css --no-source-map",
-    "devServer" : "./node_modules/nodemon/bin/nodemon.js index.js"
+    "devServer" : "/node_modules/nodemon/bin/nodemon.js index.js"
   },
   "repository": {
     "type": "git",
