@@ -1,29 +1,9 @@
   @font-face {
-    font-family: "Montserrat-Light";
-    src: url("../fonts/Montserrat-Light.ttf");
+    font-family: "MonaSans";
+    src: url("../../fonts/monasans_var.ttf");
   }
 
-  @font-face {
-    font-family: "Montserrat";
-    src: url("../fonts/Montserrat-Regular.ttf");
-  }
-
-  @font-face {
-    font-family: "Montserrat-Bold";
-    src: url("../fonts/Montserrat-Bold.ttf");
-  }
-
-  @font-face {
-    font-family: "Montserrat-ExtraBold";
-    src: url("../fonts/Montserrat-ExtraBold.ttf");
-  }
-
-  @font-face {
-    font-family: "Quicksand";
-    src: url("../fonts/Quicksand-VariableFont_wght.ttf");
-  }
-
-body
+*
 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', "sans-serif";
 }

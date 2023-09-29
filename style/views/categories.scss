@@ -1,0 +1,162 @@
+@use "../base/reset";
+@use "../base/common";
+@use "../abstracts/mixins" as mixin;
+@use "../abstracts/variables" as var;
+
+.category-header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-top: 3rem;
+
+  padding-bottom: 2rem;
+  height: 3rem;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.555);
+
+  &__button--back {
+    &:link, &:active, &:visited, &:hover {
+      color: black;
+      text-decoration: none;
+
+      border-radius: 0.4em;
+      padding:0.8em;
+    }
+
+    &:hover {
+      background-color: #8f95b18c;
+    }
+  }
+
+  &__name {
+    padding: 0.5em 1em;
+  }
+
+  &__button--add {
+
+    padding:0.5rem 1rem;
+
+
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.4rem;
+
+
+    color: white;
+    background-color: #3a70d4;
+
+    &:hover {
+      background-color: hsl(219, 58%, 41%);
+    }
+  }
+
+  &__color-picker {
+
+    height: 3em;
+    width: 3em;
+
+    border:none;
+    border-radius: 0.4rem;
+    overflow: hidden;
+  }
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  
+  gap: 1rem;
+
+  padding:2rem;
+  width: 100%;
+
+  .category-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding:0.2rem 1rem;
+    border:3px solid #3a70d4;
+
+    &:nth-child(2n) {
+      border-color:rgb(255, 34, 34);
+    }
+
+    &:nth-child(3n) {
+      border-color:rgb(34, 255, 89);
+    }
+
+    border-radius: 0.4rem;
+
+    &__title {
+      border-radius: 0.4rem;
+      padding:0.5rem 0.4rem;
+
+    }
+
+    &__actions{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      gap:0.7rem;
+
+      border-radius: 0.4rem;
+      padding:0.5rem 0.4rem;
+    }
+
+    &__icon {
+      width: inherit;
+    }
+
+    &__icon-wrapper { 
+      position: relative;
+
+      width: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      border-radius: 10px;
+    
+
+      &:hover {
+        cursor: pointer;
+        &::after {
+          content: "";
+          position: absolute;
+          top: -0.1em;
+          left: -0.1em;
+          right: -0.1em;
+          bottom: -0.1em;
+
+
+          border-radius: 10px;
+          border: 2px solid black;
+        }
+
+      }
+      &--delete {
+
+        fill: rgb(214, 27, 27);
+
+
+        &:hover {
+          &::after {
+            border: 2px solid rgb(214, 27, 27);
+          }
+        }
+      }
+
+    }
+  }
+  
+
+}

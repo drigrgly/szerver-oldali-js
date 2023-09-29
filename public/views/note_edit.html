@@ -4,14 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="../css/note_edit.css">
+  <link rel="stylesheet" href="../css/views/note_edit.css">
 
   <title>Notez</title>
 </head>
 <body>
+  <header class="page-header">
+    <h1 class="title">Notez</h1>
+    <div class="actions">
+      <a href="notes.html" class="actions__button">Összes jegyzet</a>
+      <a href="categories.html" class="actions__button">Kategóriák kezelése</a>
+    </div>
+  </header>
   <main>
-    <header>
-      <h2 class="title">Nagyon Nagyon Nagyon Nagyon Nagyon hosszú cím</h2>
+    <header class="edit-header">
+      <input type="text" name="" id="" class="title" value="Nagyon Nagyon Nagyon Nagyon hosszú cím">
+      <!-- <h2 class="title"></h2> -->
       <select name="" id="" class="category-select">
         <option value="" selected disabled>Kategória</option>
         <option value="">kategoria1</option>
@@ -21,9 +29,13 @@
         <option value="">kategoria5</option>
         <option value="">kategoria6</option>
       </select>
-      <p class="character-count">400000 / 25000</p>
+      <p class="character-count"><span>0</span> / 25000</p>
     </header>
     <textarea  resize="false" class="text-input"></textarea>
+    <div class="actions">
+      <a href="notes.html" class="actions__button actions__button--back">vissza</a>
+      <a href="#" class="actions__button call-to-action-button">mentés</a>
+    </div>
   </main>
 </body>
 </html>
