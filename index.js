@@ -1,13 +1,14 @@
 let express = require("express");
 let app = express();
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
+
+// app.get("/", (req, res, next) => {
+//   res.redirect("/views/notes.html");
+// });
 
 //routing
-app.get("/", (req, res, next) => {
-  res.redirect("/views/notes.html");
-});
-
+require("./routing/index")(app);
 
 let server = app.listen(3000, () => {
   console.log("Running on :3000");

@@ -1,0 +1,65 @@
+Notez feljegyzés készítő webapp
+- notes.html - Jegyzetek kijelzése, kategóriák lekérése, jegyzetek törlése, jegyzet szerkesztése, létrehozása gombok
+- note_edit.html - Új jegyzet létrehozása, valamint meglévő szerkesztése
+- categories.html - Kategória hozzáadása, szerkesztése, törlése
+
+
+middleware/common/
+  renderMW
+
+middleware/note/
+  getNotesMW
+  getNoteMW
+  saveNoteMW
+  delNoteMW
+
+middleware/category/
+  getCategoriesMW
+  getCategoryMW
+  saveCategoryMW
+  delCategoryMW
+
+#### Összes note-ot kijelző oldal ####
+GET /
+  getCategoriesMW                       - Lekéri a kategóriákat az adatbázisból
+  getNotesMW                            - Lekéri a jegyzeteket az adatbázisból
+  renderMW(notes.html)                  - kirendereli a notes.html oldalt
+
+GET /note/delete/:note_id               - Egy kiválasztot jegyzet törlése
+  getNoteMW
+  delNoteMW                             - törlés után visszairányít a notes.html-re
+
+
+#### Egyetlen jegyzet szerkesztése / új jegyzet készíése oldal ####
+
+GET, POST /note/new                     - Új jegyzet létrehozása esetén üres mezők megjelenítése, létrehozáskor POST kérés
+  getCategoriesMW
+  saveNoteMW                            - Mentéskor átirányítás a /note/edit/:note_id-re
+  renderMW(note_edit.html)              - note_edit.html oldal kirenderelése
+
+GET, POST /note/edit/:note_id           - Post kérésre elmenti a jegyzetet
+  getCategoriesMW
+  getNoteMW
+  saveNoteMW                            - Ebben az esetben a mentés felülírja a már létező bejegyzést
+  renderMW(note_edit.html)              - note_edit.html oldal kirenderelése
+
+
+#### Kategóriák oldal ####
+
+GET /categories
+  getCategoriesMW
+  renderMW(categories.html)             - categories.html kirenderelése, 
+
+POST /category/new                      - Post kérésre új kategória elmentése
+  saveCategoryMW                        - elmentés után a /categories-re irányít
+
+GET, POST /category/edit/:category_id
+  getCategoriesMW
+  getCategory
+  saveCategoryMW                        - Post esetén a kategória felülírása, átirányítás a /categories-ra
+  renderMW(categories.html)             - Szerkesztés esetén egy popup szerű ablak kirenderelése a többi elé
+
+
+GET /categories/delete/:category_id
+  getCategoryMW
+  delCategoryMW                         - Kategória törlése, átirányítás a /categories oldalra
