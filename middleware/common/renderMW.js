@@ -3,7 +3,6 @@
  */
 module.exports = function (objectrepository, viewName) {
   return function (req, res, next) {  
-    res.redirect(viewName+".html");
-    return next();
+    res.render(viewName);
   }
 }

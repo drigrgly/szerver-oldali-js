@@ -1,0 +1,50 @@
+<%- include("header") -%>
+
+<%- include("nav", {page: "notes"}) -%>
+
+<main class="main--notes">
+  <section class="notes">
+    <!-- Fejléc -->
+    <div class="note notes-header">
+      <div class="note-body">
+        <p>Cím</p>
+        <p>Létrehozás dátuma</p>
+        <p>Módosítás dátuma</p>
+        <p>Műveletek</p>
+      </div>
+      <div class="note-category-filter"></div>  
+    </div>
+
+    <% notes.forEach(note => { %>
+      <div class="note">
+        <div class="note-body">
+          <p class="note-body__title"><%= note.title %></p>
+          <p class="note-body__creationDate"><%= note.createDate %></p>
+          <p class="note-body__modifyDate"><%= note.modDate %></p>
+          <div class="note-body__actions">
+            <a class="note-body__actions__button" href="/note/edit/<%= note.id %>">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path></svg>
+            </a>
+            <a class="note-body__actions__button note-body__actions__button--delete" href="/note/delete/<%= note.id %>">
+              <svg class="icon icon-delete" xmlns="http://www.w3.org/2000/svg" viewBox="3 3 18 18"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
+            </a>
+          </div>
+        </div>
+  
+        <div 
+          class="note-category"  
+          style="
+            background-color: <%= categories.find(x => x.id == note.categId).bgColor%>;
+            color: <%= categories.find(x => x.id == note.categId).fgColor%>;
+          ">
+          <p class="note-category__text"><%= categories.find(x => x.id == note.categId).title %></p>
+        </div>
+      </div>
+      <!-- /note -->
+    <% }); %>
+    
+
+  </section>
+</main>
+
+<%- include("footer") -%>

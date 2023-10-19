@@ -3,7 +3,7 @@
 @use "../abstracts/mixins" as mixin;
 @use "../abstracts/variables" as var;
 
-main {
+.main--notes {
   margin: 0em auto;
   position: relative;
   width: 100%;
@@ -34,20 +34,6 @@ main {
       position: relative;
       display: flex;
       align-items: center;
-
-      &:nth-child(2) {
-        .note-category {
-          color: #fff;
-          background-color: rgb(120, 65, 192);
-        }
-      }
-
-      &:nth-child(3n) {
-        .note-category {
-          color: #fff;
-          background-color: rgb(192, 65, 65);
-        }
-      }
    
       border:1px solid black;
       border-bottom: none;
@@ -149,7 +135,7 @@ main {
   
         
       }
-      // /note-body
+      // /-body
 
       &-category {
         width: 10em;
@@ -161,7 +147,6 @@ main {
         z-index: 1;
 
         height: 100%;
-        background-color: rgb(226, 217, 94);
 
         
 

@@ -1,0 +1,56 @@
+<%- include("header") -%>
+
+<%- include("nav", {page: "notes"}) -%>
+
+<main class="main--note_edit">
+  <header class="edit-header">
+    <input type="text" name="" id="" class="title" 
+      value="<% if( typeof note !== 'undefined' ) {%><%= note.title %><% } %>"
+    >
+
+    <select name="" id="slCateg" class="category-select">
+      <option value=""
+      <% if( typeof note === 'undefined' ) {%>
+        selected
+      <% } %>
+      disabled>
+      Kategória</option>
+      <% categories.forEach(category => { %>
+        <option 
+        value="<%= category.id %>"
+        style="
+          background-color: <%= category.bgColor%>;
+          color: <%= category.fgColor%>;"
+          
+        <% if( typeof note !== 'undefined' && category.id == note.categId) {%>
+          selected
+        <% } %>>
+
+        <%= category.title %>
+
+        </option>
+      <% }); %>
+
+    </select>
+    <p class="character-count"><span id="spCounter">0</span> / 1000</p>
+  </header>
+  <textarea  resize="false" class="text-input" id="taNote" maxlength="1000"></textarea>
+  <form class="actions" method="post">
+    <a href="/notes" class="actions__button actions__button--back">vissza</a>
+    <input type="submit" value="mentés" class="actions__button actions__button--submit"/>
+  </form>
+</main>
+
+<script lang="javascript"> 
+  let span = document.getElementById("spCounter");
+  let textArea = document.getElementById("taNote");
+  let select = document.getElementById("slCateg");
+
+  textArea.addEventListener("input",() => {
+    span.innerHTML = textArea.value.length;
+  });
+
+
+</script>
+
+<%- include("footer") -%>

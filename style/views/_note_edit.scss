@@ -11,24 +11,15 @@ a:link, a:hover, a:active, a:visited {
   color: black;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  background-color: #fff;
-}
-
-
-
-main {
+.main--note_edit {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   width: 70%;
+  max-width: 70em;
   height: 100vh;
 
   .edit-header {
@@ -52,9 +43,10 @@ main {
     .category-select {
       text-align: center;
       font-size: 1.3rem;
-      background-color: #3a70d4;
-      color: white;
-      border:none;
+      //background-color: #3a70d4;
+      background: none;
+      border:1px solid black;
+      color: #000;
       border-radius: 0.4em;
       height: 100%;
 
@@ -99,11 +91,23 @@ main {
       border-radius: 0.4em;
       padding:0.8em;
 
+      &--submit {
+        border:none;
+        background-color: hsl(219, 58%, 41%);
+        color: white;
+        padding:0.8em;
+        font-size: 1.05rem;
+
+        cursor: pointer;
+
+      } 
+
       &--back {
         &:hover {
           background-color: #8f95b18c;
         }
       }
     }
+
   }
 }

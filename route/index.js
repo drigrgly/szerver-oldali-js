@@ -11,12 +11,6 @@ const delNoteMW = require("../middleware/note/delNoteMW");
 module.exports = function (app) {
   const objRepo = {};
 
-  app.get("/", 
-    getCategoriesMW(objRepo),
-    getNotesMW(objRepo),
-    renderMW(objRepo, "notes")
-  );
-
   app.get("/note/delete/:note_id",
     getNoteMW(objRepo),
     delNoteMW(objRepo)
@@ -28,7 +22,7 @@ module.exports = function (app) {
     renderMW(objRepo, "note_edit")
   );
 
-  app.use("/note/edit/:note_id", 
+  app.use("/note/edit/:note_edit", 
     getCategoriesMW(objRepo),
     getNoteMW(objRepo),
     saveNoteMW(objRepo),
@@ -56,4 +50,9 @@ module.exports = function (app) {
     delCategoryMW(objRepo)
   );
 
+  app.get(['/','/notes'], 
+    getCategoriesMW(objRepo),
+    getNotesMW(objRepo),
+    renderMW(objRepo, "notes.ejs")
+  );
 };

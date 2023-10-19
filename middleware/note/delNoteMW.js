@@ -4,6 +4,10 @@
  */
 module.exports = function (objectrepository) {
   return function (req, res, next) {  
-    return next();
+    if(typeof res.locals.note === 'undefined') {
+      return next();
+    }
+    
+    return res.redirect("/notes");
   }
 }
