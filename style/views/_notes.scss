@@ -3,6 +3,10 @@
 @use "../abstracts/mixins" as mixin;
 @use "../abstracts/variables" as var;
 
+.body--notes {
+  overflow: hidden;
+}
+
 .main--notes {
   margin: 0em auto;
   position: relative;
@@ -197,4 +201,110 @@
     //note
   }
 
+}
+
+.category-filter-modal {
+  z-index: 4;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  padding:4rem;
+
+  gap: 1em;
+
+  background-color: white;
+
+  max-height: 40rem;
+
+  width: 60vw;
+
+  border:1px solid rgb(49, 49, 49);
+  border-radius: 0.4rem;
+
+  box-shadow: 0rem 0rem 2rem rgba(76, 70, 87, 0.253);
+
+
+  &__icon {
+    position: absolute;
+    width: 2em;
+    top: 0.3rem;
+    right: 0.3rem;
+
+    cursor: pointer;
+
+    &--reset {
+      right: inherit;
+      left: 0.3rem;
+      width: auto;
+
+      border:none;
+        background-color: hsl(219, 58%, 41%);
+        color: white;
+        padding:0.8em;
+        border-radius: 0.4rem;
+
+        cursor: pointer;
+
+      &:active {
+        background-color: hsl(219, 51%, 29%);
+
+      }
+    }
+   
+  }
+
+
+  &__category-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    gap: 1rem;
+  
+    width: 100%;
+  
+    user-select: none;
+    .category-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+  
+      padding:0.2rem 1rem;
+      border:3px solid #3a70d4;
+  
+      &:nth-child(2n) {
+        border-color:rgb(255, 34, 34);
+      }
+  
+      &:nth-child(3n) {
+        border-color:rgb(34, 255, 89);
+      }
+  
+      border-radius: 0.4rem;
+  
+      &__title {
+        border-radius: 0.4rem;
+        padding:0.5rem 0.4rem;
+  
+      }
+
+      &__checkbox {
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+  
+      
+    }
+  }
 }
