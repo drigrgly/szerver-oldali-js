@@ -29,7 +29,7 @@ module.exports = function (app) {
     renderMW(objRepo, "note_edit")
   );
 
-  app.get("/categories",
+  app.use("/categories",
     getCategoriesMW(objRepo),
     renderMW(objRepo, "categories")
   );
@@ -45,7 +45,7 @@ module.exports = function (app) {
     renderMW(objRepo, "categories")
   );
 
-  app.get("/categories/delete/:category_id",
+  app.get("/category/delete/:category_id",
     getCategoryMW(objRepo),
     delCategoryMW(objRepo)
   );

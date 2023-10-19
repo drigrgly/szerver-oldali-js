@@ -2,13 +2,13 @@
 
 <%- include("nav", {page: "notes"}) -%>
 
-<main class="main--note_edit">
+<form class="main--note_edit"  method="post">
   <header class="edit-header">
-    <input type="text" name="" id="" class="title" 
+    <input type="text" name="noteTitle" class="title" 
       value="<% if( typeof note !== 'undefined' ) {%><%= note.title %><% } %>"
     >
 
-    <select name="" id="slCateg" class="category-select">
+    <select name="categ" id="slCateg" class="category-select">
       <option value=""
       <% if( typeof note === 'undefined' ) {%>
         selected
@@ -34,14 +34,14 @@
     </select>
     <p class="character-count"><span id="spCounter">0</span> / 1000</p>
   </header>
-  <textarea  resize="false" class="text-input" id="taNote" maxlength="1000"></textarea>
-  <form class="actions" method="post">
+  <textarea name="noteBody" resize="false" class="text-input" id="taNote" maxlength="1000"><% if( typeof note !== 'undefined' ) { %><%= note.body %><% } %></textarea>
+  <div class="actions">
     <a href="/notes" class="actions__button actions__button--back">vissza</a>
     <input type="submit" value="mentés" class="actions__button actions__button--submit"/>
-  </form>
+  </div>
 </main>
 
-<script lang="javascript"> 
+<script type="text/javascript"> 
   let span = document.getElementById("spCounter");
   let textArea = document.getElementById("taNote");
   let select = document.getElementById("slCateg");

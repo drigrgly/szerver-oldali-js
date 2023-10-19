@@ -4,6 +4,11 @@
  */
 module.exports = function (objectrepository) {
   return function (req, res, next) {  
-    return next();
+    console.log(req.body.categoryId);
+    if(typeof req.body.categoryId === 'undefined') {
+      return next();
+    }
+
+    return res.redirect("/categories");
   }
 }

@@ -2,6 +2,12 @@
 
   <%- include("nav", {page: "categories"}) -%>
 
+  <form class="category-header" method="post">
+    <a href="/notes" class="category-header__button--back">Vissza</a>
+    <input type="text" class="category-header__name" placeholder="Kategória neve">
+    <input type="color" class="category-header__color-picker">
+    <input type="submit" value="Hozzáadás" class="category-header__button--add">
+  </form>
 
   <section class="categories">
     <% categories.forEach(category => { %>
@@ -10,14 +16,14 @@
   
         <div class="category-item__actions">
           
-          <a href="/category/edit/" class="category-item__icon-wrapper">
+          <a href="/category/edit/<%= category.id %>" class="category-item__icon-wrapper">
             <svg class="category-item__icon category-item__icon--edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path></svg>
           </a>
 
           <% if(typeof category.isDefault === undefined || !category.isDefault) { %>
-          <div class="category-item__icon-wrapper category-item__icon-wrapper--delete">
+          <a href="/category/delete/<%= category.id %>" class="category-item__icon-wrapper category-item__icon-wrapper--delete">
             <svg class="category-item__icon category-item__icon--delete" xmlns="http://www.w3.org/2000/svg" viewBox="3 3 18 18"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
-          </div>
+          </a>
           <% } %> 
         </div>
       </div>
@@ -27,5 +33,21 @@
     <!-- category end -->
   </section>
 
+  <% if(typeof category !== 'undefined') { %>
+  <form class="category-edit-modal" id="modForm" method="post" style="border-color: <%= category.bgColor %>">
+    <input type="text" name="categTitle" class="category-edit-modal__item category-edit-modal__item--title" value="<%= category.title %>">
+    <input type="color" id="cPicker" class="category-edit-modal__item category-edit-modal__item--color-picker" value="<%= category.bgColor %>">
+    <input type="submit" class="category-edit-modal__item category-edit-modal__item--submit call-to-action-button" value="mentés">
+  </form>
+  <% } %>
+
+
+  <script type="text/javascript" >
+      let cPicker = document.getElementById("cPicker");
+      let modForm = document.getElementById("modForm");
+      cPicker.addEventListener("input", () => {
+        modForm.style.borderColor = cPicker.value;
+      });
+  </script>
 
 <%- include("footer") -%>

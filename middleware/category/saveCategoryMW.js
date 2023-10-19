@@ -4,6 +4,10 @@
  */
 module.exports = function (objectrepository) {
   return function (req, res, next) {  
-    return next();
+    if(typeof req.body.categTitle === 'undefined') {
+      return next();
+    }
+
+    return res.redirect("/categories");
   }
 }
