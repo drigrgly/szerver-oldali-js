@@ -3,9 +3,10 @@
 <%- include("nav", {page: "notes"}) -%>
 
 <main class="main--notes">
-  <section class="notes">
-    <!-- Fejléc -->
-    <div class="note notes-header">
+  <section class="notes" id="noteContainer">
+
+    <!-- Header note -->
+    <div class="note notes-header" data-header data-categoryid="-1">
       <div class="note-body">
         <p>Cím</p>
         <p>Létrehozás dátuma</p>
@@ -15,8 +16,9 @@
       <div class="note-category-filter"></div>  
     </div>
 
+    <!-- Dynamycally generateed notes -->
     <% notes.forEach(note => { %>
-      <div class="note">
+      <div class="note" data-categoryid="<%= categories.find(x => x.id == note.categId).id %>">
         <div class="note-body">
           <p class="note-body__title"><%= note.title %></p>
           <p class="note-body__creationDate"><%= note.createDate %></p>
@@ -65,58 +67,5 @@
 </div>
 
 
-<script type="text/javascript" >
-    let modal = document.getElementById("modal");
-
-    let modalCloser = document.getElementById("modalCloser");
-    let modalOpener = document.getElementById("modalOpener");
-    let filterResetter = document.getElementById("btnDeleteFilters");
-
-    let checkboxes = document.getElementsByName("cb");
-
-    let filterCategIds = [];
-    
-    modalOpener.addEventListener("click",() => {
-      modal.style.visibility = "visible";
-    });
-
-    modalCloser.addEventListener("click", () => {
-      modal.style.visibility = "hidden";
-    });
-
-    //Deleting the filters
-    filterResetter.addEventListener("click", () => {
-      checkboxes.forEach(cb => {
-        cb.checked = false;
-
-        filterManager(cb.value, cb.checked);
-      });
-    });
-
-    checkboxes.forEach(cb => {
-      cb.addEventListener("change", e => {
-        filterManager(e.target.value, e.target.checked)
-      })
-    });
-
-    //If the filter is alredy active don't add it a second time
-    const filterManager = (id, isAdd) => {
-      if(isAdd) {
-        if(filterCategIds.indexOf(id) == -1)
-          filterCategIds.push(id);
-      }
-      else {
-        if(filterCategIds.find(x => x.id == id) != 'undefined')
-          filterCategIds.splice(filterCategIds.indexOf(id), 1);
-      }
-
-      console.log(filterCategIds);
-    }
-
-    const refreshList = () => {
-
-    }
-
-</script>
-
+<script type="text/javascript" src="/../js/notesHelper.js"></script>
 <%- include("footer") -%>

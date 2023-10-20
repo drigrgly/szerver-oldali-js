@@ -8,7 +8,7 @@
       value="<% if( typeof note !== 'undefined' ) {%><%= note.title %><% } %>"
     >
 
-    <select name="categ" id="slCateg" class="category-select">
+    <select name="categ" id="slCateg" class="category-select" >
       <option value=""
       <% if( typeof note === 'undefined' ) {%>
         selected
@@ -17,11 +17,8 @@
       Kategória</option>
       <% categories.forEach(category => { %>
         <option 
-        value="<%= category.id %>"
-        style="
-          background-color: <%= category.bgColor%>;
-          color: <%= category.fgColor%>;"
-          
+          value="<%= category.id %>"
+          data-bgcolor ="<%= category.bgColor%>"
         <% if( typeof note !== 'undefined' && category.id == note.categId) {%>
           selected
         <% } %>>
@@ -50,7 +47,14 @@
     span.innerHTML = textArea.value.length;
   });
 
+  const changeSelectBorder = () => {
+    let selected = select.selectedOptions[0];
+    if(selected.hasAttribute("data-bgcolor"))
+      select.style.borderColor = selected.dataset.bgcolor; 
+  }
 
+  select.addEventListener("change", changeSelectBorder);
+  window.addEventListener("load", changeSelectBorder);
 </script>
 
 <%- include("footer") -%>

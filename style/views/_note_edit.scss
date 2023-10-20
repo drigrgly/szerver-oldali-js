@@ -43,16 +43,14 @@ a:link, a:hover, a:active, a:visited {
     .category-select {
       text-align: center;
       font-size: 1.3rem;
-      //background-color: #3a70d4;
       background: none;
-      border:1px solid black;
+      border:2px solid rgb(105, 105, 105);
       color: #000;
       border-radius: 0.4em;
       height: 100%;
 
       option:disabled {
         color:rgb(0, 0, 0);
-        
       }
     }
 

@@ -4,8 +4,7 @@
  */
 module.exports = function (objectrepository) {
   return function (req, res, next) {  
-    console.log(req.body.categoryId);
-    if(typeof req.body.categoryId === 'undefined') {
+    if(typeof res.locals.category == 'undefined') {
       return next();
     }
 

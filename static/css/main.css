@@ -538,7 +538,7 @@ a:link, a:hover, a:active, a:visited {
   text-align: center;
   font-size: 1.3rem;
   background: none;
-  border: 1px solid black;
+  border: 2px solid dimgray;
   color: #000;
   border-radius: 0.4em;
   height: 100%;
