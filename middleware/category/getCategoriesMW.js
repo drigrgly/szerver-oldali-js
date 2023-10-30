@@ -1,22 +1,20 @@
 /*
  *  Gets all the categories from the database
  */
+const requireOption = require("../common/requireOption");
+
 module.exports = function (objectrepository) {
-  return function (req, res, next) {  
-    let dummyCategories = [
-      {
-        id: 2,
-        title: "Teendők",
-        bgColor: "#00ee55",
-        fgColor: "#111"
-      },
-      {
-        id: 3,
-        title: "Munka",
-        bgColor: "#ffdd58",
-        fgColor: "#fff"
-      }
-    ];
+  const CategoryModel = requireOption(objectrepository ,"CategoryModel");
+
+  return async function (req, res, next) {  
+    try {
+      let categories = await CategoryModel.find({});
+      res.locals.categories = categories;
+      return next();
+    }
+    catch (err) {
+      return next(err);
+    }
 
     //This is the default category that cannot be deleted
     let permanentCategory = {
@@ -27,8 +25,5 @@ module.exports = function (objectrepository) {
       fgColor: "#000"
     }
 
-    dummyCategories.unshift(permanentCategory)
-    res.locals.categories = dummyCategories ;
-    return next();
   }
 }

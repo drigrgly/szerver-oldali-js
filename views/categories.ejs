@@ -2,16 +2,17 @@
 
   <%- include("nav", {page: "categories"}) -%>
 
-  <form class="category-header" method="post">
+  <form action="/category/new" class="category-header" method="post">
     <a href="/notes" class="category-header__button--back">Vissza</a>
-    <input type="text" class="category-header__name" placeholder="Kategória neve">
-    <input type="color" class="category-header__color-picker">
+    <input type="hidden" name="fgColor" value="#000">
+    <input type="text" name="title" class="category-header__name" placeholder="Kategória neve">
+    <input type="color" name="bgColor" class="category-header__color-picker">
     <input type="submit" value="Hozzáadás" class="category-header__button--add">
   </form>
 
   <section class="categories">
     <% categories.forEach(category => { %>
-      <div class="category-item">
+      <div class="category-item" style="border:3px solid <%= category.bgColor %>;">
         <p class="category-item__title"><%= category.title %></p>
   
         <div class="category-item__actions">
@@ -35,8 +36,10 @@
 
   <% if(typeof category !== 'undefined') { %>
   <form class="category-edit-modal" id="modForm" method="post" style="border-color: <%= category.bgColor %>">
-    <input type="text" name="categTitle" class="category-edit-modal__item category-edit-modal__item--title" value="<%= category.title %>">
-    <input type="color" id="cPicker" class="category-edit-modal__item category-edit-modal__item--color-picker" value="<%= category.bgColor %>">
+    <input type="hidden" name="_id" value="<%= category._id %>">
+    <input type="hidden" name="fgColor" value="#000">
+    <input type="text" name="title" class="category-edit-modal__item category-edit-modal__item--title" value="<%= category.title %>">
+    <input type="color" name="bgColor" id="cPicker" class="category-edit-modal__item category-edit-modal__item--color-picker" value="<%= category.bgColor %>">
     <input type="submit" class="category-edit-modal__item category-edit-modal__item--submit call-to-action-button" value="mentés">
   </form>
   <% } %>

@@ -8,8 +8,14 @@ const getNoteMW = require("../middleware/note/getNoteMW");
 const saveNoteMW = require("../middleware/note/saveNoteMW");
 const delNoteMW = require("../middleware/note/delNoteMW");
 
+const NoteModel = require("../models/note");
+const CategoryModel = require("../models/category");
+
 module.exports = function (app) {
-  const objRepo = {};
+  const objRepo = {
+    NoteModel: NoteModel,
+    CategoryModel: CategoryModel
+  };
 
   app.get("/note/delete/:note_id",
     getNoteMW(objRepo),
@@ -22,7 +28,7 @@ module.exports = function (app) {
     renderMW(objRepo, "note_edit")
   );
 
-  app.use("/note/edit/:note_edit", 
+  app.use("/note/edit/:note_id", 
     getCategoriesMW(objRepo),
     getNoteMW(objRepo),
     saveNoteMW(objRepo),

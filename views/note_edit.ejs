@@ -3,12 +3,16 @@
 <%- include("nav", {page: "note_edit"}) -%>
 
 <form class="main--note_edit"  method="post">
+  <% if( typeof note !== 'undefined' ) {%>
+    <input type="hidden" name="creation_date" value="<%= note.creation_date %>">
+  <% } %>
+  
   <header class="edit-header">
-    <input type="text" name="noteTitle" class="title" 
+    <input type="text" name="title" class="title" 
       value="<% if( typeof note !== 'undefined' ) {%><%= note.title %><% } %>"
     >
 
-    <select name="categ" id="slCateg" class="category-select" >
+    <select name="category" id="slCateg" class="category-select" >
       <option value=""
       <% if( typeof note === 'undefined' ) {%>
         selected
@@ -19,7 +23,7 @@
         <option 
           value="<%= category.id %>"
           data-bgcolor ="<%= category.bgColor%>"
-        <% if( typeof note !== 'undefined' && category.id == note.categId) {%>
+        <% if( typeof note !== 'undefined' && category.id == note._category) {%>
           selected
         <% } %>>
 
@@ -31,12 +35,12 @@
     </select>
     <p class="character-count"><span id="spCounter">0</span> / 1000</p>
   </header>
-  <textarea name="noteBody" resize="false" class="text-input" id="taNote" maxlength="1000"><% if( typeof note !== 'undefined' ) { %><%= note.body %><% } %></textarea>
+  <textarea name="text" resize="false" class="text-input" id="taNote" maxlength="1000"><% if( typeof note !== 'undefined' ) { %><%= note.text %><% } %></textarea>
   <div class="actions">
     <a href="/notes" class="actions__button actions__button--back">vissza</a>
     <input type="submit" value="mentés" class="actions__button actions__button--submit"/>
   </div>
-</main>
+</form>
 
 <script type="text/javascript"> 
   let span = document.getElementById("spCounter");
@@ -54,7 +58,10 @@
   }
 
   select.addEventListener("change", changeSelectBorder);
-  window.addEventListener("load", changeSelectBorder);
+  window.addEventListener("load", () => {
+    changeSelectBorder();
+    span.innerHTML = textArea.value.length;
+  });
 </script>
 
 <%- include("footer") -%>

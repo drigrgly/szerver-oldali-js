@@ -2,12 +2,33 @@
  *  If a new category comes in it adds it to the database
  *  Otherwise it updates the existing one 
  */
+const requireOption = require("../common/requireOption");
+
+
 module.exports = function (objectrepository) {
-  return function (req, res, next) {  
-    if(typeof req.body.categTitle === 'undefined') {
+  const CategoryModel = requireOption(objectrepository, "CategoryModel");
+
+  return function (req, res, next) {
+    const { title, bgColor, fgColor } = req.body;
+
+    if (title === undefined || bgColor === undefined || fgColor === undefined) {
       return next();
     }
 
-    return res.redirect("/categories");
+    if (res.locals.category === undefined) {
+      res.locals.category = new CategoryModel();
+    }
+    res.locals.category.title = title;
+    res.locals.category.bgColor = bgColor;
+    res.locals.category.fgColor = fgColor;
+
+    res.locals.category.save()
+      .then(() => {
+        return res.redirect("/categories");
+      })
+      .catch(err => {
+        return next(err);
+      })
+
   }
 }

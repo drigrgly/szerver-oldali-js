@@ -215,14 +215,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.2rem 1rem;
-  border: 3px solid #3a70d4;
   border-radius: 0.4rem;
-}
-.categories .category-item:nth-child(2n) {
-  border-color: #ff2222;
-}
-.categories .category-item:nth-child(3n) {
-  border-color: #22ff59;
 }
 .categories .category-item__title {
   border-radius: 0.4rem;
@@ -483,14 +476,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.2rem 1rem;
-  border: 3px solid #3a70d4;
   border-radius: 0.4rem;
-}
-.category-filter-modal__category-container .category-item:nth-child(2n) {
-  border-color: #ff2222;
-}
-.category-filter-modal__category-container .category-item:nth-child(3n) {
-  border-color: #22ff59;
 }
 .category-filter-modal__category-container .category-item__title {
   border-radius: 0.4rem;

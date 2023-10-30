@@ -18,11 +18,39 @@
 
     <!-- Dynamycally generateed notes -->
     <% notes.forEach(note => { %>
-      <div class="note" data-categoryid="<%= categories.find(x => x.id == note.categId).id %>">
+      <div class="note" data-categoryid="<%= categories.find(x => x.id == note._category)._id %>">
         <div class="note-body">
           <p class="note-body__title"><%= note.title %></p>
-          <p class="note-body__creationDate"><%= note.createDate %></p>
-          <p class="note-body__modifyDate"><%= note.modDate %></p>
+          <p class="note-body__creationDate">
+            <%= 
+              [  
+                note.creation_date.getFullYear(),
+                (note.creation_date.getMonth() + 1).toString().padStart(2, "0"),
+                (note.creation_date.getDate()).toString().padStart(2, "0"),
+              ].join(".") +
+              " - " +
+              [
+                (note.creation_date.getHours()).toString().padStart(2, "0"),
+                (note.creation_date.getMinutes()).toString().padStart(2, "0"),
+                (note.creation_date.getSeconds()).toString().padStart(2, "0"),
+              ].join(":") 
+            %>
+          </p>
+          <p class="note-body__modifyDate">
+            <%= 
+              [  
+                note.modification_date.getFullYear(),
+                (note.modification_date.getMonth() + 1).toString().padStart(2, "0"),
+                (note.modification_date.getDate()).toString().padStart(2, "0"),
+              ].join(".") +
+              " - " +
+              [
+                (note.modification_date.getHours()).toString().padStart(2, "0"),
+                (note.modification_date.getMinutes()).toString().padStart(2, "0"),
+                (note.modification_date.getSeconds()).toString().padStart(2, "0"),
+              ].join(":") 
+            %>
+          </p>
           <div class="note-body__actions">
             <a class="note-body__actions__button" href="/note/edit/<%= note.id %>">
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path></svg>
@@ -36,10 +64,10 @@
         <div 
           class="note-category"  
           style="
-            background-color: <%= categories.find(x => x.id == note.categId).bgColor%>;
-            color: <%= categories.find(x => x.id == note.categId).fgColor%>;
+            background-color: <%= categories.find(x => x.id == note._category).bgColor%>;
+            color: <%= categories.find(x => x.id == note._category).fgColor%>;
           ">
-          <p class="note-category__text"><%= categories.find(x => x.id == note.categId).title %></p>
+          <p class="note-category__text"><%= categories.find(x => x.id == note._category).title %></p>
         </div>
       </div>
       <!-- /note -->
@@ -55,7 +83,7 @@
 
   <div class="category-filter-modal__category-container">
     <% categories.forEach(category => { %>
-      <label class="category-item">
+      <label class="category-item" style=" border:3px solid <%= category.bgColor %>;">
         <p class="category-item__title"><%= category.title %></p>
   
         <input class="category-item__checkbox" type="checkbox" name="cb" value="<%= category.id %>">

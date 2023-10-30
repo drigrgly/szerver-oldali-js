@@ -2,12 +2,24 @@
  *  Deletes the category with the given id
  *  Then redirects to the categories page
  */
-module.exports = function (objectrepository) {
-  return function (req, res, next) {  
-    if(typeof res.locals.category == 'undefined') {
-      return next();
-    }
+const requireOption = require("../common/requireOption");
 
-    return res.redirect("/categories");
+
+module.exports = function (objectrepository) {
+  const CategoryModel = requireOption(objectrepository ,"CategoryModel");
+
+  return function (req, res, next) {  
+    CategoryModel.deleteOne({_id: req.params.category_id})
+      .then(result => {
+        if (result.deletedCount === 0) {
+          const err = new('Category not found');
+          err.status = 404;
+          return Promise.reject(err);
+        }
+        return res.redirect("/categories");
+      })
+      .catch(err => {
+        return next(err);
+      })
   }
 }

@@ -83,15 +83,7 @@
     gap: 0.5rem;
 
     padding:0.2rem 1rem;
-    border:3px solid #3a70d4;
-
-    &:nth-child(2n) {
-      border-color:rgb(255, 34, 34);
-    }
-
-    &:nth-child(3n) {
-      border-color:rgb(34, 255, 89);
-    }
+    //border:3px solid #3a70d4;
 
     border-radius: 0.4rem;
 
