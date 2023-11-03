@@ -16,14 +16,7 @@ module.exports = function (objectrepository) {
       return next(err);
     }
 
-    //This is the default category that cannot be deleted
-    let permanentCategory = {
-      id: 0,
-      isDefault: true,
-      title: "NOTE",
-      bgColor: "#ffee55",
-      fgColor: "#000"
-    }
+    
 
   }
 }

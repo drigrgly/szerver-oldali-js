@@ -1,3 +1,4 @@
 ## szerver oldali javascript tárgy feladat - Jegyzetkészítő alkalmazás
 
-### Az alkalmazás már rendelkezik mock adatokkal, amiket a middlewarek adnak vissza
+### TODO:
+- Ha egy note által használt kategóriát törlünk állítsa át a defaultra

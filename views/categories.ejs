@@ -5,6 +5,7 @@
   <form action="/category/new" class="category-header" method="post">
     <a href="/notes" class="category-header__button--back">Vissza</a>
     <input type="hidden" name="fgColor" value="#000">
+    <input type="hidden" name="isDefault" value="false">
     <input type="text" name="title" class="category-header__name" placeholder="Kategória neve">
     <input type="color" name="bgColor" class="category-header__color-picker">
     <input type="submit" value="Hozzáadás" class="category-header__button--add">
@@ -37,6 +38,7 @@
   <% if(typeof category !== 'undefined') { %>
   <form class="category-edit-modal" id="modForm" method="post" style="border-color: <%= category.bgColor %>">
     <input type="hidden" name="_id" value="<%= category._id %>">
+    <input type="hidden" name="isDefault" value="<%= category.isDefault %>">
     <input type="hidden" name="fgColor" value="#000">
     <input type="text" name="title" class="category-edit-modal__item category-edit-modal__item--title" value="<%= category.title %>">
     <input type="color" name="bgColor" id="cPicker" class="category-edit-modal__item category-edit-modal__item--color-picker" value="<%= category.bgColor %>">

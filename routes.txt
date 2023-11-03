@@ -15,13 +15,15 @@ middleware/note/
 
 middleware/category/
   getCategoriesMW
+  defaultCategoriesMW                   - Lekezeli az alapértelmezett kategóriát
   getCategoryMW
   saveCategoryMW
   delCategoryMW
 
 #### Összes note-ot kijelző oldal ####
 GET /
-  getCategoriesMW                       - Lekéri a kategóriákat az adatbázisból
+  getCategoriesMW
+  defaultCategoriesMW                   - Lekezeli az alapértelmezett kategóriát                       - Lekéri a kategóriákat az adatbázisból
   getNotesMW                            - Lekéri a jegyzeteket az adatbázisból
   renderMW(notes.html)                  - kirendereli a notes.html oldalt
 
@@ -34,11 +36,13 @@ GET /note/delete/:note_id               - Egy kiválasztot jegyzet törlése
 
 GET, POST /note/new                     - Új jegyzet létrehozása esetén üres mezők megjelenítése, létrehozáskor POST kérés
   getCategoriesMW
+  defaultCategoriesMW                   - Lekezeli az alapértelmezett kategóriát
   saveNoteMW                            - Mentéskor átirányítás a /note/edit/:note_id-re
   renderMW(note_edit.html)              - note_edit.html oldal kirenderelése
 
 GET, POST /note/edit/:note_id           - Post kérésre elmenti a jegyzetet
   getCategoriesMW
+  defaultCategoriesMW                   - Lekezeli az alapértelmezett kategóriát
   getNoteMW
   saveNoteMW                            - Ebben az esetben a mentés felülírja a már létező bejegyzést
   renderMW(note_edit.html)              - note_edit.html oldal kirenderelése
@@ -48,6 +52,7 @@ GET, POST /note/edit/:note_id           - Post kérésre elmenti a jegyzetet
 
 GET /categories
   getCategoriesMW
+  defaultCategoriesMW                   - Lekezeli az alapértelmezett kategóriát
   renderMW(categories.html)             - categories.html kirenderelése, 
 
 POST /category/new                      - Post kérésre új kategória elmentése
@@ -55,6 +60,7 @@ POST /category/new                      - Post kérésre új kategória elmenté
 
 GET, POST /category/edit/:category_id
   getCategoriesMW
+  defaultCategoriesMW                   - Lekezeli az alapértelmezett kategóriát
   getCategory
   saveCategoryMW                        - Post esetén a kategória felülírása, átirányítás a /categories-ra
   renderMW(categories.html)             - Szerkesztés esetén egy popup szerű ablak kirenderelése a többi elé

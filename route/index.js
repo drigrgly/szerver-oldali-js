@@ -10,6 +10,7 @@ const delNoteMW = require("../middleware/note/delNoteMW");
 
 const NoteModel = require("../models/note");
 const CategoryModel = require("../models/category");
+const defaultCategoryMW = require("../middleware/category/defaultCategoryMW");
 
 module.exports = function (app) {
   const objRepo = {
@@ -24,12 +25,14 @@ module.exports = function (app) {
 
   app.use("/note/new",
     getCategoriesMW(objRepo),
+    defaultCategoryMW(objRepo),
     saveNoteMW(objRepo),
     renderMW(objRepo, "note_edit")
   );
 
   app.use("/note/edit/:note_id", 
     getCategoriesMW(objRepo),
+    defaultCategoryMW(objRepo),
     getNoteMW(objRepo),
     saveNoteMW(objRepo),
     renderMW(objRepo, "note_edit")
@@ -37,15 +40,17 @@ module.exports = function (app) {
 
   app.use("/categories",
     getCategoriesMW(objRepo),
+    defaultCategoryMW(objRepo),
     renderMW(objRepo, "categories")
   );
 
-  app.post("/category/new", 
+  app.post("/category/new",
     saveCategoryMW(objRepo)
   );
 
   app.use("/category/edit/:category_id",
     getCategoriesMW(objRepo),
+    defaultCategoryMW(objRepo),
     getCategoryMW(objRepo),
     saveCategoryMW(objRepo),
     renderMW(objRepo, "categories")
@@ -58,6 +63,7 @@ module.exports = function (app) {
 
   app.get(['/','/notes'], 
     getCategoriesMW(objRepo),
+    defaultCategoryMW(objRepo),
     getNotesMW(objRepo),
     renderMW(objRepo, "notes.ejs")
   );

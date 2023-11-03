@@ -12,7 +12,7 @@
       value="<% if( typeof note !== 'undefined' ) {%><%= note.title %><% } %>"
     >
 
-    <select name="category" id="slCateg" class="category-select" >
+    <select name="category" id="slCateg" class="category-select" required>
       <option value=""
       <% if( typeof note === 'undefined' ) {%>
         selected
