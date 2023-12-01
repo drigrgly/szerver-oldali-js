@@ -3,7 +3,7 @@
 @use "../abstracts/mixins" as mixin;
 @use "../abstracts/variables" as var;
 * {
-  font-family: "mona-sans", Helvetica, sans-serif;
+  font-family: "MonaSans", Helvetica, sans-serif;
 }
 
 a:link, a:hover, a:active, a:visited {
@@ -19,6 +19,7 @@ a:link, a:hover, a:active, a:visited {
   align-items: center;
 
   width: 70%;
+  min-width: 40rem;
   max-width: 70em;
   height: 100vh;
 
@@ -73,7 +74,7 @@ a:link, a:hover, a:active, a:visited {
 
     box-shadow: inset 0px 0px 10px  rgba(0, 0, 0, 0.233);
 
-    font-family: "mona-sans";
+    font-family: "MonaSans";
     //border: 1px solid #9e9e9e
   }
 

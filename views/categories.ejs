@@ -4,10 +4,19 @@
 
   <form action="/category/new" class="category-header" method="post">
     <a href="/notes" class="category-header__button--back">Vissza</a>
-    <input type="hidden" name="fgColor" value="#000">
     <input type="hidden" name="isDefault" value="false">
-    <input type="text" name="title" class="category-header__name" placeholder="Kategória neve">
-    <input type="color" name="bgColor" class="category-header__color-picker">
+    <input type="text" name="title" class="category-header__name" placeholder="Kategória neve" required>
+
+    <div id="newCategoryBgColorWrapper" class="category-header__color-group color-group" style="border-color: #0074aa;">
+      <label for="">Background Color</label>
+      <input type="color" name="bgColor" id="bgColor" class="category-header__color-picker" value="#0074aa">
+    </div>
+
+    <div id="newCategoryFgColorWrapper" class="category-header__color-group color-group" style="border-color: #d9e4ff;">
+      <label for="">Foreground Color</label>
+      <input type="color" name="fgColor" id="fgColor" class="category-header__color-picker"  value="#d9e4ff">
+    </div>
+
     <input type="submit" value="Hozzáadás" class="category-header__button--add">
   </form>
 
@@ -37,21 +46,65 @@
 
   <% if(typeof category !== 'undefined') { %>
   <form class="category-edit-modal" id="modForm" method="post" style="border-color: <%= category.bgColor %>">
+    <svg id="modalCloser" class="category-edit-modal__icon" xmlns="http://www.w3.org/2000/svg" viewBox="3 3 18 18"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
+
     <input type="hidden" name="_id" value="<%= category._id %>">
     <input type="hidden" name="isDefault" value="<%= category.isDefault %>">
-    <input type="hidden" name="fgColor" value="#000">
+    <input type="hidden" id="needsChangeSetter" name="needsChange" value="true">
+
     <input type="text" name="title" class="category-edit-modal__item category-edit-modal__item--title" value="<%= category.title %>">
-    <input type="color" name="bgColor" id="cPicker" class="category-edit-modal__item category-edit-modal__item--color-picker" value="<%= category.bgColor %>">
+    <div class="category-header__color-group" id="editModalBgColorGroup" style="border-color: <%= category.bgColor %>">
+      <label for="bgCpicker">Background Color</label>
+      <input type="color" name="bgColor" id="bgCpicker" class="category-header__color-picker" value="<%= category.bgColor %>">
+    </div>
+
+    <div class="category-header__color-group" id="editModalFgColorGroup" style="border-color: <%= category.fgColor %>">
+      <label for="fgCpicker">Foreground Color</label>
+      <input type="color" name="fgColor" id="fgCpicker" class="category-header__color-picker" value="<%= category.fgColor %>">
+    </div>
+    
     <input type="submit" class="category-edit-modal__item category-edit-modal__item--submit call-to-action-button" value="mentés">
   </form>
   <% } %>
 
 
   <script type="text/javascript" >
-      let cPicker = document.getElementById("cPicker");
+      let editModalBgColorPicker = document.getElementById("bgCpicker");
+      let editModalFgColorPicker = document.getElementById("fgCpicker");
+
+      let newCategoryBgColorPicker = document.getElementById("bgColor");
+      let newCategoryFgColorPicker = document.getElementById("fgColor");
+
       let modForm = document.getElementById("modForm");
-      cPicker.addEventListener("input", () => {
-        modForm.style.borderColor = cPicker.value;
+ 
+      //Edit category modal color pickers
+      if(editModalBgColorPicker != null)
+        editModalBgColorPicker.addEventListener("input", () => {
+          modForm.style.borderColor = editModalBgColorPicker.value;
+          document.getElementById("editModalBgColorGroup").style.borderColor = editModalBgColorPicker.value;
+          
+        });
+
+      if(editModalFgColorPicker != null)
+        editModalFgColorPicker.addEventListener("input", () => {
+          document.getElementById("editModalFgColorGroup").style.borderColor = editModalFgColorPicker.value;
+          
+        });
+
+      //New category color pickers
+      newCategoryBgColorPicker.addEventListener("input", () => {
+        document.getElementById("newCategoryBgColorWrapper").style.borderColor = newCategoryBgColorPicker.value;
+      })
+
+      newCategoryFgColorPicker.addEventListener("input", () => {
+        document.getElementById("newCategoryFgColorWrapper").style.borderColor = newCategoryFgColorPicker.value;
+      })
+
+
+      //If we press the X redirect to the categories page without the need to save the current item
+      document.getElementById("modalCloser").addEventListener("click", () => {
+        document.getElementById("needsChangeSetter").value = false;
+        document.getElementById("modForm").submit();
       });
   </script>
 

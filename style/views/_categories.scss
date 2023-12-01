@@ -9,12 +9,15 @@
   flex-direction: row;
   align-items: center;
 
+  @include mixin.mqDown("medium") {
+    flex-direction: column;
+  }
+
   gap: 1rem;
 
   margin-top: 3rem;
 
   padding-bottom: 2rem;
-  height: 3rem;
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.555);
 
@@ -52,6 +55,15 @@
     &:hover {
       background-color: hsl(219, 58%, 41%);
     }
+  }
+
+  &__color-group {
+    display: flex;
+    align-items: center;
+    gap:1rem;
+    padding:0.5rem 1rem;
+    border:3px solid black;
+    border-radius: 0.4rem;
   }
 
   &__color-picker {
@@ -174,6 +186,14 @@
   border-radius: 0.4rem;
 
   box-shadow: 0rem 0rem 2rem rgba(76, 70, 87, 0.253);
+
+  &__icon {
+    position: absolute;
+    width: 2rem;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
 
   &__item {
 

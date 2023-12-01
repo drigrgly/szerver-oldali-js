@@ -9,9 +9,12 @@ module.exports = function (objectrepository) {
   const CategoryModel = requireOption(objectrepository, "CategoryModel");
 
   return function (req, res, next) {
-    const { title, bgColor, fgColor, isDefault } = req.body;
+    const { title, bgColor, fgColor, isDefault, needsChange } = req.body;
 
-    console.log(req.body);
+    //If we closed the modal instead of saving it don't change anything
+    if(needsChange !== undefined && needsChange === "false") return res.redirect("/categories");
+ 
+
     if (title === undefined || bgColor === undefined || fgColor === undefined) {
       return next();
     }
@@ -20,7 +23,6 @@ module.exports = function (objectrepository) {
       res.locals.category = new CategoryModel();
       res.locals.category.isDefault = false;
   } else res.locals.category.isDefault = isDefault;
-  console.log(res.locals.category);
 
     res.locals.category.title = title;
     res.locals.category.bgColor = bgColor;

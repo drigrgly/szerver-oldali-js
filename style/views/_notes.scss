@@ -31,6 +31,7 @@
     max-width: 80em;
 
     padding: 2em 2em;
+    min-width: 40rem;
 
     
 
@@ -39,6 +40,7 @@
       display: flex;
       align-items: center;
    
+
       border:1px solid black;
       border-bottom: none;
 
@@ -184,16 +186,6 @@
             cursor: pointer;
           }
 
-          // p {
-          //   border: 2px solid #1d1f17;
-          //   border-radius: 10px;
-          //   width: 80%;
-          //   &:hover {
-          //     background-color: #8f95b18c;
-          //   }
-          // }
-
-         
         }
         // /filter
       }

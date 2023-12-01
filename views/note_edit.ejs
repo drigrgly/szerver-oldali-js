@@ -10,6 +10,7 @@
   <header class="edit-header">
     <input type="text" name="title" class="title" 
       value="<% if( typeof note !== 'undefined' ) {%><%= note.title %><% } %>"
+      required
     >
 
     <select name="category" id="slCateg" class="category-select" required>
