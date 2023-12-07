@@ -9,21 +9,20 @@ module.exports = function (objectrepository) {
 
   return async function (req, res, next) {  
     //This is the default category that cannot be deleted
+    
     try {
-      let category = await CategoryModel.find({isDefault: true}).exec();
-
+      let category =  await CategoryModel.find({isDefault: true}).exec();
       //If we have a default category in the database we append it to the list
+
       if(category.length != 0) {
         return next();
       } 
-
       //Else we add it
       let perm = new CategoryModel();
       perm.isDefault = true;
       perm.title = "NOTE";
       perm.bgColor = "#ffee55";
       perm.fgColor = "#000";
-
       perm.save()
         .then(() => {
           res.locals.categories.unshift(perm);
@@ -31,10 +30,13 @@ module.exports = function (objectrepository) {
           return next();
         })
         .catch(err => {
+          console.log(err);
           return next(err);
         });
     }
     catch (err) {
+      console.log(err);
+
       return next(err);
     }
 
