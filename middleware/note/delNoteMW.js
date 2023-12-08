@@ -12,7 +12,7 @@ module.exports = function (objectrepository) {
     NoteModel.deleteOne({_id: req.params.note_id})
       .then(result => {
         if (result.deletedCount === 0) {
-          const err = new('Note not found');
+          const err = new Error("Note not found");
           err.status = 404;
           return Promise.reject(err);
         }
